@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Eventi</ion-title>
+  </ion-toolbar>
+  <link rel="stylesheet" href="feed.page.scss"/>
+</ion-header>
+
+<ion-content>
+
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div class="ion-text-center">
+  <ion-card *ngFor="let event of events">
+    <ion-card-header>
+      <ion-card-subtitle>
+        {{event.type}}{{' | '}}{{event.time | date: 'dd/MM/yyyy'}}</ion-card-subtitle>
+      <ion-card-title >{{event.name}}
+      </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <h2>{{event.description}}</h2>
+    </ion-card-content>
+  </ion-card>
+  </div>
+  <ion-fab  vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button  [routerLink]="['/new-event']">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

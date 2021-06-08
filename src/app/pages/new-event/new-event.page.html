@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/feed"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Aggiungi Un Evento</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen={true}>
+  <form [formGroup]="newEventForm" (submit)="create()">
+    <ion-list lines="full" class="ion-no-margin ion-no-padding">
+      <ion-item>
+        <ion-label position="floating">Nome Evento <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text"   formControlName="name"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Descrizione<ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text" formControlName="description"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Tipo Evento</ion-label>
+        <ion-select value="Festa" okText="Okay" cancelText="Annulla " formControlName="type">
+          <ion-select-option value="Festa">Festa</ion-select-option>
+          <ion-select-option value="Concerto">Concerto</ion-select-option>
+          <ion-select-option value="Sagra">Sagra</ion-select-option>
+          <ion-select-option value="Inaugurazione">Inaugurazione</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Data e ora</ion-label>
+        <ion-datetime displayFormat="D MMM YYYY H:mm" min="2020" max="2050" formControlName="time"></ion-datetime>
+      </ion-item>
+    </ion-list>
+
+
+
+    <div class="ion-padding">
+      <ion-button expand="block" type="submit" class="ion-no-margin">Aggiungi Evento</ion-button>
+    </div>
+  </form>
+</ion-content>
+
+
+

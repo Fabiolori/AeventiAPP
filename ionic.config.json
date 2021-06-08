@@ -1,0 +1,7 @@
+{
+  "name": "a-eventi-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

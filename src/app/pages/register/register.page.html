@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/feed"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Registrati</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen={true}>
+  <form [formGroup]="registerForm" (submit)="register()">
+    <ion-list lines="full" class="ion-no-margin ion-no-padding">
+      <ion-item>
+        <ion-label position="floating">Email <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="email"   formControlName="email"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Password<ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="password" formControlName="password"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Nome<ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text"  formControlName="name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Cognome<ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text"  formControlName="surname"></ion-input>
+      </ion-item>
+
+
+
+    </ion-list>
+    <div class="ion-padding">
+      <ion-button expand="block" type="submit" class="ion-no-margin">Unisciti a noi!</ion-button>
+    </div>
+  </form>
+</ion-content>,
+
+
+

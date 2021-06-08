@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Account e Impostazioni</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-button [routerLink]="['/login']" >
+    <ion-icon slot="start" name="key-outline"></ion-icon>
+    Login
+  </ion-button>
+
+  <ion-button class= "register-button" color ="secondary"   [routerLink]="['/register']">
+    <ion-icon slot="start" name="pencil-outline"></ion-icon>
+    Registrati
+  </ion-button>
+</ion-content>
