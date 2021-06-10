@@ -16,3 +16,13 @@
   top: 0;
   padding: 0 8px;
   box-sizing: border-box; }
+
+.reload{
+  --background: red;
+}
+
+@media (prefers-color-scheme: dark) {
+  .square {
+    --background: green;
+  }
+}

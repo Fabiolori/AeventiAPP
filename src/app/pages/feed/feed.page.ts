@@ -11,6 +11,7 @@ import {FeedService} from './feed.service';
 
 export class FeedPage implements OnInit {
   private events: Array<any>;
+  private progress: number;
   constructor(private http: HttpClient,public feedService: FeedService) { }
 
   ngOnInit() {
@@ -22,10 +23,21 @@ export class FeedPage implements OnInit {
   }
 
 
+  setPercentBar(i) {
+    setTimeout(() => {
+      const apc = (i / 100);
+      this.progress = apc;
+    }, 20 * i);
+
+  }
+
   refresh(event) {
     console.log('Updating Events');
     this.ngOnInit();
-    setTimeout(() => {
+    for (let index = 0; index <= 100; index++) {
+      this.setPercentBar(+index);
+    }
+      setTimeout(() => {
       console.log('Finished');
       event.target.complete();
     }, 2000);

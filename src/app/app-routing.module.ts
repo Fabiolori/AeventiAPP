@@ -31,7 +31,10 @@ const routes: Routes = [
     path: 'new-event',
     loadChildren: () => import('./pages/new-event/new-event.module').then(m => m.NewEventPageModule)
   },
-
+  {
+    path: 'homepage',
+    loadChildren: () => import('./pages/homepage/homepage.module').then(m => m.HomepagePageModule)
+  },
 
 
 ];
