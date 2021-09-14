@@ -22,7 +22,7 @@ public class AccountService {
         public Account updateAccount(Account newAccount, long id) {
             return repository.findById(id)
                     .map(account -> {
-                        account.setEmail(newAccount.getEmail());
+                        account.setUsername(newAccount.getUsername());
                         account.setPassword(newAccount.getPassword());
                         account.setName(newAccount.getName());
                         account.setSurname(newAccount.getSurname());
@@ -47,7 +47,7 @@ public class AccountService {
         }
 
         public Account getAccountbyMail(String email, String password) {
-            return repository.findAll().stream().filter(a -> a.getEmail().equals(email) && a.getPassword().equals(password)).findFirst()
+            return repository.findAll().stream().filter(a -> a.getUsername().equals(email) && a.getPassword().equals(password)).findFirst()
                     .orElseThrow(NullPointerException::new);
         }
 
