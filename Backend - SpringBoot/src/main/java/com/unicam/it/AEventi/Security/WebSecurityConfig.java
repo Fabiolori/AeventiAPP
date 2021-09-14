@@ -49,7 +49,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     httpSecurity
       .csrf().disable()
       .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
-      // non abbiamo bisogno di una sessione
+      //avvio una sessione senza stato
       .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
       .cors().and()
       .authorizeRequests()
@@ -62,10 +62,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         "/**/*.css",
         "/**/*.js"
       ).permitAll()
-      .antMatchers("/login" , "/accounts/auth").permitAll()
+      .antMatchers("/public/login" , "/public/accounts").permitAll()
       .anyRequest().authenticated();
 
-    // Filtro Custom JWT
+    // Filtro personalizzato JWT
     httpSecurity.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
 
     httpSecurity.headers().cacheControl();

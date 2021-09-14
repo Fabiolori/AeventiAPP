@@ -1,55 +1,43 @@
 package com.unicam.it.AEventi.Models;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
-import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "accounts")
 public class Account{
 
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    long id;
 
-    @Column(name = "username")
-    private String username;
-    // LA PASSWORD PER FARE L'ACCESSO
-    @Column(name = "password")
-    private String password;
-    //IL NOME DELL'ACCOUNT
-    @Column(name = "name")
-    private String name;
-    //IL COGNOME DELL ACCOUNT
-    @Column(name = "surname")
-    private String surname;
+  @Id
+  @Column(name = "username", unique = true)
+  @NotNull
+  private String username;
 
-    public Account() {
+  @Column(name = "password")
+  @NotNull
+  private String password;
 
-    }
+  @Column(name = "name")
+  @NotNull
+  private String name;
 
-    public Account(String username, String password, String name, String surname) {
-        this.username = username;
-        this.password = password;
-        this.name = name;
-        this.surname = surname;
-    }
+  @Column(name = "surname")
+  @NotNull
+  private String surname;
 
-    public long getId() {
-        return id;
-    }
+  @Column(name = "enabled")
+  @NotNull
+  private Boolean enabled;
 
-    public void setId(long id) {
-        this.id = id;
-    }
+  @ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable(
+    name = "accounts_authorities",
+    joinColumns = {@JoinColumn(name = "accounts_username", referencedColumnName = "username")},
+    inverseJoinColumns = {@JoinColumn(name = "authorities_id", referencedColumnName = "id")})
+  private List<Authority> authorities;
 
-
-
-  public String getPassword() {
-        return password;
-    }
 
   public String getUsername() {
     return username;
@@ -59,36 +47,57 @@ public class Account{
     this.username = username;
   }
 
-
+  public String getPassword() {
+    return password;
+  }
 
   public void setPassword(String password) {
-        this.password = password;
-    }
+    this.password = password;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public String getSurname() {
-        return surname;
-    }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
+  public String getSurname() {
+    return surname;
+  }
 
-    @Override
-    public String toString() {
-        return "Account{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                '}';
-    }
+  public void setSurname(String surname) {
+    this.surname = surname;
+  }
+
+  public Boolean getEnabled() {
+    return enabled;
+  }
+
+  public void setEnabled(Boolean enabled) {
+    this.enabled = enabled;
+  }
+
+  public List<Authority> getAuthorities() {
+    return authorities;
+  }
+
+  public void setAuthorities(List<Authority> authorities) {
+    this.authorities = authorities;
+  }
+
+  @Override
+  public String toString() {
+    return "Account{" +
+      "username='" + username + '\'' +
+      ", password='" + password + '\'' +
+      ", name='" + name + '\'' +
+      ", surname='" + surname + '\'' +
+      ", enabled=" + enabled +
+      ", authorities=" + authorities +
+      '}';
+  }
+
 }

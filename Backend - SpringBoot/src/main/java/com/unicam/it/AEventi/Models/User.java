@@ -1,12 +1,11 @@
 package com.unicam.it.AEventi.Models;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import java.util.Collection;
+import java.util.List;
 
 public class User implements UserDetails {
 
@@ -22,6 +21,8 @@ public class User implements UserDetails {
     this.password = password;
     this.authorities = authorities;
   }
+
+
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {

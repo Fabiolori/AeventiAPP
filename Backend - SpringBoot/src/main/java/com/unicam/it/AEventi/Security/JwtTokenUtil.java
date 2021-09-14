@@ -1,7 +1,6 @@
 package com.unicam.it.AEventi.Security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.unicam.it.AEventi.Models.Account;
 import com.unicam.it.AEventi.Models.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -44,9 +43,7 @@ import java.util.stream.Collectors;
         return new User(
           claims.getSubject(),
           "",
-          authorities
-
-        );
+          authorities);
       } catch (Exception e) {
         return null;
       }
@@ -67,16 +64,16 @@ import java.util.stream.Collectors;
         .getBody();
     }
 
-    private Boolean isTokenExpired(String token) {
+    public Boolean isTokenExpired(String token) {
       final Date expiration = getExpirationDateFromToken(token);
       return expiration.before(new Date());
     }
 
-    public String generateToken(Account account) {
-      return doGenerateToken(account.getName());
+    public String generateToken(User account) {
+      return doGenerateToken(account.getUsername());
     }
 
-    private String doGenerateToken(String subject) {
+    public String doGenerateToken(String subject) {
 
       Claims claims = Jwts.claims().setSubject(subject);
       claims.put("scopes", Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN")));

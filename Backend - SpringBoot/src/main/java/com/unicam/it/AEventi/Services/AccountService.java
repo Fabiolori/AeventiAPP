@@ -1,59 +1,58 @@
 package com.unicam.it.AEventi.Services;
 
 import com.unicam.it.AEventi.Models.Account;
+import com.unicam.it.AEventi.Models.Event;
+import com.unicam.it.AEventi.Models.User;
 import com.unicam.it.AEventi.Repo.AccountRepository;
+import com.unicam.it.AEventi.Security.JwtUserFromAccount;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
-public class AccountService {
+
+public class AccountService implements UserDetailsService {
+
+  @Autowired
+  private AccountRepository accountRepository;
+
+  @Override
+  public User loadUserByUsername(String username) throws UsernameNotFoundException {
+    Account account = accountRepository.findByUsername(username);
+
+    if (account == null) {
+      throw new UsernameNotFoundException(String.format("No user found with username '%s'.", username));
+    } else {
+      return JwtUserFromAccount.create(account);
+    }
+
+  }
+  public Account createAccount(Account account) {
 
 
-        @Autowired
-        AccountRepository repository;
+    return accountRepository.save(account);
+  }
 
-        public Account createAccount(Account account) {
-
-            return repository.save(account);
+  public Account updateAccount(Account newAccount, String username) {
+      Account account = accountRepository.findByUsername(username);
+          newAccount.setUsername(username);
+          account.setName(newAccount.getName());
+          account.setPassword(newAccount.getPassword());
+          account.setSurname(newAccount.getSurname());
+          account.setEnabled(newAccount.getEnabled());
+          account.setAuthorities(newAccount.getAuthorities());
+          return accountRepository.save(account);
         }
 
-        public Account updateAccount(Account newAccount, long id) {
-            return repository.findById(id)
-                    .map(account -> {
-                        account.setUsername(newAccount.getUsername());
-                        account.setPassword(newAccount.getPassword());
-                        account.setName(newAccount.getName());
-                        account.setSurname(newAccount.getSurname());
-                        return repository.save(account);
-                    })
-                    .orElseGet(() -> {
-                        newAccount.setId(id);
-                        return repository.save(newAccount);
-                    });
+  public void deleteAccount(String username) {
 
-        }
+    accountRepository.delete(accountRepository.findByUsername(username));
+
+    }
+  }
 
 
 
-        public void deleteAccount(long id) {
-            repository.deleteById(id);
-
-        }
-
-        public List<Account> getAccount() {
-            return repository.findAll();
-        }
-
-        public Account getAccountbyMail(String email, String password) {
-            return repository.findAll().stream().filter(a -> a.getUsername().equals(email) && a.getPassword().equals(password)).findFirst()
-                    .orElseThrow(NullPointerException::new);
-        }
-
-
-
-
-
-
-}
