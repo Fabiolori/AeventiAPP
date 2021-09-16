@@ -3,6 +3,7 @@ package com.unicam.it.AEventi.Security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -39,35 +40,25 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   }
 
   @Bean
+  public AuthenticationManager getAuthenticationManager() throws Exception {
+    return super.authenticationManagerBean();
+  }
+
+  @Bean
   public JwtAuthenticationTokenFilter authenticationTokenFilterBean() throws Exception {
     return new JwtAuthenticationTokenFilter();
   }
 
 
   @Override
-  protected void configure(HttpSecurity httpSecurity) throws Exception {
-    httpSecurity
-      .csrf().disable()
+  protected void configure(HttpSecurity http) throws Exception {
+    http.csrf().disable()
       .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
-      //avvio una sessione senza stato
       .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-      .cors().and()
-      .authorizeRequests()
-      .antMatchers(
-        //HttpMethod.GET,
-        "/",
-        "/*.html",
-        "/favicon.ico",
-        "/**/*.html",
-        "/**/*.css",
-        "/**/*.js"
-      ).permitAll()
-      .antMatchers("/public/login" , "/public/accounts").permitAll()
+      .authorizeRequests().antMatchers("/**").permitAll()
+      .antMatchers("/public/login", "/public/accounts").permitAll()
       .anyRequest().authenticated();
 
-    // Filtro personalizzato JWT
-    httpSecurity.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
-
-    httpSecurity.headers().cacheControl();
+    http.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
   }
 }

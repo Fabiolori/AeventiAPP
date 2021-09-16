@@ -25,12 +25,9 @@ import javax.servlet.http.HttpServletResponse;
 @RestController
 public class LoginController {
 
-
-
     @Value("${jwt.header}")
     private String tokenHeader;
 
-    // TODO AGGIUSTA, è un provlema di bean
     @Resource
     private AuthenticationManager authenticationManager;
 
