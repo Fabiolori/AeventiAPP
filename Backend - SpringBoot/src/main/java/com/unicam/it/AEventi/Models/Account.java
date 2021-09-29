@@ -11,7 +11,7 @@ public class Account{
 
 
   @Id
-  @Column(name = "username", unique = true)
+  @Column(name = "username", length = 50, unique = true,nullable = false)
   @NotNull
   private String username;
 

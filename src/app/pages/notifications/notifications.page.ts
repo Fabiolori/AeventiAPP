@@ -8,7 +8,7 @@ import {ToastController} from '@ionic/angular';
 })
 export class NotificationsPage implements OnInit {
 
-  constructor(public toastController: ToastController) { }
+  constructor(private toastController: ToastController) { }
 
   async presentToast() {
     const toast = await this.toastController.create({

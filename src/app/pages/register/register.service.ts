@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {api} from '../../../environments/environment';
 
 @Injectable()
 export class RegisterService {
@@ -14,7 +15,8 @@ export class RegisterService {
       .set('Content-Type', 'application/json;charset=UTF-8');
 
     const options = { headers : headers };
-    const response = this.http.post<Account>('http://localhost:8080/accounts',account.value, options);
+    const response = this.http.post<Account>(api + 'public/accounts',account.value, options);
+    console.log(account.value);
     return response;
   }
 

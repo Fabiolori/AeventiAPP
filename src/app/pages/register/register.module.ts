@@ -9,6 +9,8 @@ import {RegisterPageRoutingModule} from './register-routing.module';
 import {RegisterPage} from './register.page';
 
 import {RegisterService} from './register.service';
+import {LoginPage} from "../login/login.page";
+import {LoginService} from "../login/login.service";
 
 @NgModule({
   imports: [
@@ -18,7 +20,7 @@ import {RegisterService} from './register.service';
     RegisterPageRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [RegisterService],
+  providers: [RegisterService,LoginPage,LoginService],
   declarations: [RegisterPage]
 })
 export class RegisterPageModule {}

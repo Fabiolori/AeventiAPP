@@ -1,15 +1,15 @@
-CREATE DATABASE  IF NOT EXISTS `aeventi` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+CREATE DATABASE  IF NOT EXISTS `aeventi` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 USE `aeventi`;
--- MySQL dump 10.13  Distrib 8.0.25, for Win64 (x86_64)
+-- MariaDB dump 10.19  Distrib 10.4.19-MariaDB, for Win64 (AMD64)
 --
--- Host: localhost    Database: aeventi
+-- Host: 127.0.0.1    Database: aeventi
 -- ------------------------------------------------------
--- Server version	8.0.25
+-- Server version	10.4.19-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -23,16 +23,15 @@ USE `aeventi`;
 
 DROP TABLE IF EXISTS `accounts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `accounts` (
-  `username` varchar(50) NOT NULL,
-  `password` varchar(255) DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) DEFAULT NULL,
+  `password` varchar(32) DEFAULT NULL,
   `name` varchar(16) DEFAULT NULL,
   `surname` varchar(45) DEFAULT NULL,
-  `enabled` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`username`),
-  UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +40,7 @@ CREATE TABLE `accounts` (
 
 LOCK TABLES `accounts` WRITE;
 /*!40000 ALTER TABLE `accounts` DISABLE KEYS */;
-INSERT INTO `accounts` VALUES ('1','1234','Francesco','Rossi',NULL),('10',NULL,NULL,NULL,NULL),('11',NULL,NULL,NULL,NULL),('12',NULL,NULL,NULL,NULL),('13',NULL,NULL,NULL,NULL),('14',NULL,NULL,NULL,NULL),('15','adsads','adsasd','adsad',NULL),('16',NULL,NULL,NULL,NULL),('17',NULL,NULL,NULL,NULL),('18','aaaaaa','aaaaaa','aaaaaaa',NULL),('19','saddsa','saddassd','asda',NULL),('2','1234','Francesco','Rossi',NULL),('20',NULL,NULL,NULL,NULL),('21',NULL,NULL,NULL,NULL),('22','iGbihzrQPfC6s3F',NULL,NULL,NULL),('23','iGbihzrQPfC6s3F',NULL,'r',NULL),('24','iGbihzrQPfC6s3F',NULL,NULL,NULL),('25','1234','Francesco','Rossi',NULL),('26','1234','Francesco','Rossi',NULL),('27','1234','Francesco','Rossi',NULL),('28','aa','aa','aa',NULL),('29','iGbihzrQPfC6s3F','aa','aaa',NULL),('3',NULL,NULL,NULL,NULL),('30','iGbihzrQPfC6s3F','aaa','aaa',NULL),('4','ddd1234','Francddesco','Rossi',NULL),('5',NULL,NULL,NULL,NULL),('6',NULL,NULL,NULL,NULL),('7',NULL,NULL,NULL,NULL),('8',NULL,NULL,NULL,NULL),('9',NULL,NULL,NULL,NULL),('admin','admin',NULL,NULL,NULL),('seller@unicam.it','$2a$10$qHuRQLJPgj3uuFx1FL/ukO4c/fezSv17V0djTBL1lJ8vdMcnA/dai','Francesco','Rossi',1);
+INSERT INTO `accounts` VALUES (1,'seller@unicam.it','1234','Francesco','Rossi'),(2,'seller@unicam.it','1234','Francesco','Rossi'),(3,NULL,NULL,NULL,NULL),(4,'sesadasller@unicam.it','ddd1234','Francddesco','Rossi'),(5,NULL,NULL,NULL,NULL),(6,NULL,NULL,NULL,NULL),(7,NULL,NULL,NULL,NULL),(8,NULL,NULL,NULL,NULL),(9,NULL,NULL,NULL,NULL),(10,NULL,NULL,NULL,NULL),(11,NULL,NULL,NULL,NULL),(12,NULL,NULL,NULL,NULL),(13,NULL,NULL,NULL,NULL),(14,NULL,NULL,NULL,NULL),(15,'asdda','adsads','adsasd','adsad'),(16,NULL,NULL,NULL,NULL),(17,NULL,NULL,NULL,NULL),(18,'aaaa','aaaaaa','aaaaaa','aaaaaaa'),(19,'asddas','saddsa','saddassd','asda'),(20,NULL,NULL,NULL,NULL),(21,NULL,NULL,NULL,NULL),(22,NULL,'iGbihzrQPfC6s3F',NULL,NULL),(23,NULL,'iGbihzrQPfC6s3F',NULL,'r'),(24,NULL,'iGbihzrQPfC6s3F',NULL,NULL),(25,'seller@unicam.it','1234','Francesco','Rossi'),(26,'seller@unicam.it','1234','Francesco','Rossi'),(27,'seller@unicam.it','1234','Francesco','Rossi'),(28,'aa','aa','aa','aa'),(29,'aaa','iGbihzrQPfC6s3F','aa','aaa'),(30,'prova','iGbihzrQPfC6s3F','aaa','aaa');
 /*!40000 ALTER TABLE `accounts` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-09-16 23:34:03
+-- Dump completed on 2021-06-09  0:49:05

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {NewEventService} from './new-event.service';
+import {TokenManagerService} from '../../TokenManagerService';
 
 @Component({
   selector: 'app-new-event',
@@ -11,14 +12,13 @@ import {NewEventService} from './new-event.service';
 export class NewEventPage implements OnInit {
   newEventForm: FormGroup;
 
-  constructor(private newEventService: NewEventService) {
+  constructor(private newEventService: NewEventService, private tokenStorage: TokenManagerService) {
     this.newEventForm = new FormGroup({
       name: new FormControl(),
       description: new FormControl(),
       time: new FormControl(),
       type: new FormControl()
     });
-
   }
 
   ngOnInit() {
@@ -33,9 +33,5 @@ export class NewEventPage implements OnInit {
       , error => {
         console.log(error);}
     );
-
-
-
-
   }
 }

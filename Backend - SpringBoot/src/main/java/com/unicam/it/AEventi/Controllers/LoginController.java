@@ -1,11 +1,13 @@
 package com.unicam.it.AEventi.Controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.unicam.it.AEventi.Models.MessageResponse;
 import com.unicam.it.AEventi.Models.User;
 import com.unicam.it.AEventi.Security.JwtAuthenticationRequest;
 import com.unicam.it.AEventi.Security.JwtTokenUtil;
 import com.unicam.it.AEventi.Services.AccountService;
 import com.unicam.it.AEventi.Services.AutenticationResponseService;
+import com.unicam.it.AEventi.Services.AutenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -37,27 +39,26 @@ public class LoginController {
     @Autowired
     private AccountService accountService;
 
+    @Autowired
+    private AutenticationService autenticationService;
+
     @RequestMapping(value = "/public/login", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtAuthenticationRequest authenticationRequest, HttpServletResponse response) throws AuthenticationException, JsonProcessingException {
 
-      // Effettuo l autenticazione
-      final Authentication authentication = authenticationManager.authenticate(
-        new UsernamePasswordAuthenticationToken(
-          authenticationRequest.getUsername(),
-          authenticationRequest.getPassword()
-        )
-      );
-      SecurityContextHolder.getContext().setAuthentication(authentication);
 
-      // Genero Token
-      final User user = accountService.loadUserByUsername(authenticationRequest.getUsername());
-      final String token = jwtTokenUtil.generateToken(user);
-      response.setHeader(tokenHeader,token);
-      // Ritorno il token
-      return ResponseEntity.ok(new AutenticationResponseService(user.getUsername(),user.getAuthorities()));
+      if (autenticationService.autenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword()) == false)
+        return ResponseEntity.badRequest().body(new MessageResponse("Wrong credentials"));
+      else {
+        // Genero Token
+        final User user = accountService.loadUserByUsername(authenticationRequest.getUsername());
+        final String token = jwtTokenUtil.generateToken(user);
+        response.setHeader(tokenHeader, token);
+        // Ritorno le autorità dell'utente
+        return ResponseEntity.ok(new AutenticationResponseService(user.getUsername(), user.getAuthorities()));
+      }
     }
 
-    @RequestMapping(value = "protected/refresh-token", method = RequestMethod.GET)
+    @RequestMapping(value = "/refresh-token", method = RequestMethod.GET)
     public ResponseEntity<?> refreshAndGetAuthenticationToken(HttpServletRequest request, HttpServletResponse response) {
       String token = request.getHeader(tokenHeader);
       UserDetails userDetails =

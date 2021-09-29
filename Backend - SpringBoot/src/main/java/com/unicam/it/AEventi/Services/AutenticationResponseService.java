@@ -11,10 +11,13 @@ public class AutenticationResponseService {
   private final String username;
   Collection<? extends GrantedAuthority> authorities;
 
+
   public AutenticationResponseService(String username, Collection<? extends GrantedAuthority> authorities) {
     this.username = username;
     this.authorities = authorities;
+
   }
+
 
   public String getUsername() {
     return this.username;

@@ -10,7 +10,7 @@ import java.sql.Date;
 import java.util.Calendar;
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:8100")
+
 @RestController
 public class EventsController {
         @Autowired
@@ -20,7 +20,7 @@ public class EventsController {
             this.service = service;
         }
 
-        // SELEZIONARE TUTTI  GLI ACCOUNT
+        // SELEZIONARE TUTTI  GLI EVENTI
         // Aggregate root
         // tag::get-aggregate-root[]
         @GetMapping("/events")
@@ -29,7 +29,7 @@ public class EventsController {
         }
         // end::get-aggregate-root[]
 
-        // AGGIUNGERE UN ACCOUNT
+        // AGGIUNGERE UN Evento
         @PostMapping("/events")
         public Event newEvent(@RequestBody Event newEvent) {
             return service.createEvent(newEvent);

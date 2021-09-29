@@ -1,7 +1,9 @@
 package com.unicam.it.AEventi.Security;
 
+import com.unicam.it.AEventi.Repo.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 
 // Questa classe si occupa di intercettare ogni richiesta che arriva sul backend per verificare validità del token e
@@ -31,28 +34,40 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
   @Value("${jwt.header}")
   private String tokenHeader;
 
+  @Autowired
+  private AccountRepository accountRepository;
+
 
   @Override
   protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
+    //Prendo il token da chi fa la richiesta e vedo se è vuoto
     String authToken = request.getHeader(this.tokenHeader);
-
-    UserDetails userDetails = null;
-
-    if(authToken != null){
-      userDetails = jwtTokenUtil.getUserDetails(authToken);
+    final String header = request.getHeader(HttpHeaders.AUTHORIZATION);
+    // TODO VEDI BEARER
+    if (header == null || !header.startsWith("Bearer ")) {
+      chain.doFilter(request, response);
+      return;
     }
 
-    if (userDetails != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-
-      // Ricostruisco gli userdetails con le informazioni che trovo nel token e poi
-      // controllo l'integrita' del token
-      if (jwtTokenUtil.validateToken(authToken, userDetails)) {
-        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-        authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-      }
+    final String token = header.split(" ")[1].trim();
+    UserDetails userDetails = jwtTokenUtil.getUserDetails(token);
+    if (!jwtTokenUtil.validateToken(token,userDetails)) {
+      chain.doFilter(request, response);
+      return;
     }
 
+    UsernamePasswordAuthenticationToken
+      authentication = new UsernamePasswordAuthenticationToken(
+      userDetails, null,
+      userDetails == null ?
+        List.of() : userDetails.getAuthorities()
+    );
+
+    authentication.setDetails(
+      new WebAuthenticationDetailsSource().buildDetails(request)
+    );
+
+    SecurityContextHolder.getContext().setAuthentication(authentication);
     chain.doFilter(request, response);
   }
 }

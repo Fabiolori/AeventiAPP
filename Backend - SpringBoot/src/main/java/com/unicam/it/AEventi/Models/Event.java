@@ -22,7 +22,7 @@ import java.util.Calendar;
     private String description;
     @Column(name = "time")
     private Date time;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Account publisher;
     @Column(name = "type")
     private String type;

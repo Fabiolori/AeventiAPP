@@ -1,8 +1,11 @@
 package com.unicam.it.AEventi.Security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -14,7 +17,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
+@Order(SecurityProperties.BASIC_AUTH_ORDER)
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -52,13 +55,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
-    http.csrf().disable()
-      .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
-      .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-      .authorizeRequests().antMatchers("/**").permitAll()
-      .antMatchers("/public/login", "/public/accounts").permitAll()
-      .anyRequest().authenticated();
+    http.csrf().disable().cors().disable()
+      .authorizeRequests().antMatchers("/public/login", "/public/accounts").permitAll()
+      //.and().authorizeRequests().antMatchers(HttpMethod.GET, "/events").permitAll()
+      //le altre richieste non specificate sopra possono essere fatte solo da chi autenticato
+      .anyRequest().authenticated()
+      .and().exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
+      .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
 
     http.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
+    http.headers().cacheControl();
   }
 }
