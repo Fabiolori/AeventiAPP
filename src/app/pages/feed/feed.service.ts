@@ -10,11 +10,13 @@ export class FeedService {
 
   constructor(public http: HttpClient, private tokenStorage: TokenManagerService) {
   }
+
   getEvents(): Observable<any> {
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json;charset=UTF-8')
       .set('Authorization', this.tokenStorage.getToken());
-    const options = { headers };
-    return this.http.get(api +'events',options);
+    const options = {headers};
+
+    return this.http.get(api + 'events', options);
   }
 }

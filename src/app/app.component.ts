@@ -9,13 +9,15 @@ import {TokenManagerService} from './TokenManagerService';
 export class AppComponent {
   private page3;
   private page3end;
+
   constructor(private tokenStorage: TokenManagerService) {
-    if (this.tokenStorage.isLogged() === 'false'){
+    if (this.tokenStorage.isLogged() === 'false') {
       this.page3 = 'LogIn';
-      this.page3end ='login';
+      this.page3end = 'login';
+    } else {
+      this.page3 = 'Account';
+      this.page3end = 'settings';
     }
-    else {this.page3 = 'Account';
-      this.page3end ='settings';}
   }
 
 }

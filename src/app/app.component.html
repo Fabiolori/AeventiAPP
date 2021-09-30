@@ -2,40 +2,48 @@
   <ion-router-outlet>
 
     <ion-header>
-      <ion-button class="notification-right"  [routerLink]="['/notifications']">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
-          <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
+      <ion-button class="notification-right" [routerLink]="['/notifications']">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bell-fill"
+             viewBox="0 0 16 16">
+          <path
+            d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
         </svg>
       </ion-button>
     </ion-header>
     <ion-tabs>
 
       <ion-tab-bar slot="bottom" color="dark">
-      <ion-tab-button tab="feed">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="23" fill="currentColor" class="bi bi-bookmark-dash" viewBox="0 0 16 16">
-          <path fill-rule="evenodd" d="M5.5 6.5A.5.5 0 0 1 6 6h4a.5.5 0 0 1 0 1H6a.5.5 0 0 1-.5-.5z"/>
-          <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
-        </svg>
-      <ion-label>Eventi</ion-label>
-      </ion-tab-button>
+        <ion-tab-button tab="feed">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="23" fill="currentColor" class="bi bi-bookmark-dash"
+               viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M5.5 6.5A.5.5 0 0 1 6 6h4a.5.5 0 0 1 0 1H6a.5.5 0 0 1-.5-.5z"/>
+            <path
+              d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+          </svg>
+          <ion-label>Eventi</ion-label>
+        </ion-tab-button>
 
-      <ion-tab-button tab="new-event">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="23" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
-          <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
-        </svg>
-      <ion-label>Aggiungi Evento</ion-label>
-      </ion-tab-button>
+        <ion-tab-button tab="new-event">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="23" fill="currentColor" class="bi bi-arrow-up"
+               viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+                  d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
+          </svg>
+          <ion-label>Aggiungi Evento</ion-label>
+        </ion-tab-button>
 
-      <ion-tab-button tab={{page3end}}>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="23" fill="currentColor" class="bi bi-person-badge" viewBox="0 0 16 16">
-          <path d="M6.5 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-          <path d="M4.5 0A2.5 2.5 0 0 0 2 2.5V14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2.5A2.5 2.5 0 0 0 11.5 0h-7zM3 2.5A1.5 1.5 0 0 1 4.5 1h7A1.5 1.5 0 0 1 13 2.5v10.795a4.2 4.2 0 0 0-.776-.492C11.392 12.387 10.063 12 8 12s-3.392.387-4.224.803a4.2 4.2 0 0 0-.776.492V2.5z"/>
-        </svg>
-      <ion-label> {{page3}}</ion-label>
-      </ion-tab-button>
+        <ion-tab-button tab={{page3end}}>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="23" fill="currentColor" class="bi bi-person-badge"
+               viewBox="0 0 16 16">
+            <path d="M6.5 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+            <path
+              d="M4.5 0A2.5 2.5 0 0 0 2 2.5V14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2.5A2.5 2.5 0 0 0 11.5 0h-7zM3 2.5A1.5 1.5 0 0 1 4.5 1h7A1.5 1.5 0 0 1 13 2.5v10.795a4.2 4.2 0 0 0-.776-.492C11.392 12.387 10.063 12 8 12s-3.392.387-4.224.803a4.2 4.2 0 0 0-.776.492V2.5z"/>
+          </svg>
+          <ion-label> {{page3}}</ion-label>
+        </ion-tab-button>
 
       </ion-tab-bar>
-      </ion-tabs>
+    </ion-tabs>
 
   </ion-router-outlet>
 </ion-app>

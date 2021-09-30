@@ -5,7 +5,6 @@ import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -55,11 +54,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
-    http.csrf().disable().cors().disable()
+    http.csrf().disable().cors().and()
       .authorizeRequests().antMatchers("/public/login", "/public/accounts").permitAll()
       //.and().authorizeRequests().antMatchers(HttpMethod.GET, "/events").permitAll()
       //le altre richieste non specificate sopra possono essere fatte solo da chi autenticato
-      .anyRequest().authenticated()
+      .and().httpBasic()
       .and().exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
       .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 

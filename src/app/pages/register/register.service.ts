@@ -14,9 +14,9 @@ export class RegisterService {
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json;charset=UTF-8');
 
-    const options = { headers : headers };
-    const response = this.http.post<Account>(api + 'public/accounts',account.value, options);
-    console.log(account.value);
+    const options = {headers: headers};
+    const response = this.http.post<Account>(api + 'public/accounts', account.value, options);
+    console.log('Registro: ' + account.value.name);
     return response;
   }
 
@@ -25,7 +25,6 @@ export class RegisterService {
     console.error(error.error);
     console.error(error.headers);
   }
-
 
 
 }

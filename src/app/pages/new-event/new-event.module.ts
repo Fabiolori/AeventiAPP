@@ -21,4 +21,5 @@ import {NewEventService} from './new-event.service';
   providers: [NewEventService],
   declarations: [NewEventPage]
 })
-export class NewEventPageModule {}
+export class NewEventPageModule {
+}

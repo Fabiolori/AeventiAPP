@@ -20,4 +20,5 @@ import {FeedService} from './feed.service';
   providers: [FeedService],
   declarations: [FeedPage]
 })
-export class FeedPageModule {}
+export class FeedPageModule {
+}

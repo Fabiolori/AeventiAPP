@@ -5,8 +5,8 @@ import {IndexPage} from './index.page';
 
 const routes: Routes = [
   {
-  path: '',
-  component: IndexPage
+    path: '',
+    component: IndexPage
   }
 ]
 
@@ -15,4 +15,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class IndexPageRoutingModule {}
+export class IndexPageRoutingModule {
+}

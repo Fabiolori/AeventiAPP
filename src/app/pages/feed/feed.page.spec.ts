@@ -9,7 +9,7 @@ describe('FeedPage', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ FeedPage ],
+      declarations: [FeedPage],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 

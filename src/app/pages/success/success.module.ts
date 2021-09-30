@@ -18,4 +18,5 @@ import {SuccessPage} from './success.page';
   ],
   declarations: [SuccessPage],
 })
-export class SuccessPageModule {}
+export class SuccessPageModule {
+}

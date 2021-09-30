@@ -1,15 +1,13 @@
 package com.unicam.it.AEventi.Controllers;
 
 import com.unicam.it.AEventi.Models.Event;
-import com.unicam.it.AEventi.Models.EventType;
 import com.unicam.it.AEventi.Services.EventsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Date;
-import java.util.Calendar;
 import java.util.List;
 
+@CrossOrigin ("http://localhost:8100")
 
 @RestController
 public class EventsController {
@@ -25,13 +23,14 @@ public class EventsController {
         // tag::get-aggregate-root[]
         @GetMapping("/events")
         public List<Event> all() {
+
             return service.getEvent();
         }
         // end::get-aggregate-root[]
 
         // AGGIUNGERE UN Evento
         @PostMapping("/events")
-        public Event newEvent(@RequestBody Event newEvent) {
+        public Event newEvent(@RequestBody Event newEvent ) {
             return service.createEvent(newEvent);
 
         }

@@ -4,7 +4,6 @@ import {FormControl, FormGroup} from '@angular/forms';
 
 
 import {LoginService} from './login.service';
-import {ok} from 'assert';
 import {TokenManagerService} from '../../TokenManagerService';
 import {ToastController} from "@ionic/angular";
 
@@ -22,7 +21,7 @@ export class LoginPage implements OnInit {
   errorMessage = 'Credenziali Errate';
   roles: string[] = [];
 
-  constructor(public loginService: LoginService, private router: Router, private tokenStorage: TokenManagerService,private toastController: ToastController) {
+  constructor(public loginService: LoginService, private router: Router, private tokenStorage: TokenManagerService, private toastController: ToastController) {
     this.loginForm = new FormGroup({
       username: new FormControl(),
       password: new FormControl()
@@ -50,7 +49,6 @@ export class LoginPage implements OnInit {
   login() {
     this.loginService.login(this.loginForm.value.username, this.loginForm.value.password).subscribe(
       data => {
-        //TODO SPRIGBOOT NON AUTORIZZA ANCHE SE CI METTO IL TOKEN
         this.tokenStorage.saveToken(data.token);
         this.tokenStorage.saveUser(data);
         this.isLoginFailed = false;
@@ -60,12 +58,12 @@ export class LoginPage implements OnInit {
         console.log('login effettuato');
 
       },
-        err => {
+      err => {
         console.log('credenziali errate');
-          this.errorMessage = err.error.message;
-          this.isLoginFailed = true;
-          this.failedMessage();
-        }
+        this.errorMessage = err.error.message;
+        this.isLoginFailed = true;
+        this.failedMessage();
+      }
     );
 
   }

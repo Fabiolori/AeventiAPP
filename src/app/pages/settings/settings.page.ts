@@ -8,18 +8,27 @@ import {Router} from '@angular/router';
   styleUrls: ['./settings.page.scss'],
 })
 export class SettingsPage implements OnInit {
+  username;
 
-  constructor(private tokenStorage: TokenManagerService,private router: Router) { }
+  constructor(private tokenStorage: TokenManagerService, private router: Router) {
+    this.username = tokenStorage.getUser().username;
+
+  }
 
   ngOnInit() {
     console.log(this.tokenStorage.isLogged());
-    if (this.tokenStorage.isLogged() === 'false'){
-      this.router.navigate(['/login']).then(r => {});
+    if (this.tokenStorage.isLogged() === 'false') {
+      this.router.navigate(['/login']).then(r => {
+      });
     }
   }
-  logout(){
+
+  logout() {
     this.tokenStorage.signOut();
-    this.router.navigate(['/login']).then(r => {});
+    this.router.navigate(['/login']).then(r => {
+    });
     window.location.reload();
   }
+
+
 }

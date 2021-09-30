@@ -1,18 +1,14 @@
 package com.unicam.it.AEventi.Services;
 
-import com.unicam.it.AEventi.Models.*;
+import com.unicam.it.AEventi.Models.Account;
+import com.unicam.it.AEventi.Models.User;
 import com.unicam.it.AEventi.Repo.AccountRepository;
 import com.unicam.it.AEventi.Security.JwtUserFromAccount;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 

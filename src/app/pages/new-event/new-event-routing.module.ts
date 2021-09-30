@@ -7,7 +7,11 @@ const routes: Routes = [
   {
     path: '',
     component: NewEventPage
-  }
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('src/app/pages/login/login.module').then(m => m.LoginPageModule)
+  },
 
 ];
 
@@ -15,4 +19,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class NewEventPageRoutingModule {}
+export class NewEventPageRoutingModule {
+}

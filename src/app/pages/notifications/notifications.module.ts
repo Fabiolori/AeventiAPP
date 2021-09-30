@@ -17,4 +17,5 @@ import {NotificationsPage} from './notifications.page';
   ],
   declarations: [NotificationsPage]
 })
-export class NotificationsPageModule {}
+export class NotificationsPageModule {
+}

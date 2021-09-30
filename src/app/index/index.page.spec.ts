@@ -9,7 +9,7 @@ describe('IndexPage', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ IndexPage ],
+      declarations: [IndexPage],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 

@@ -20,7 +20,8 @@ import {LoginService} from "../login/login.service";
     RegisterPageRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [RegisterService,LoginPage,LoginService],
+  providers: [RegisterService, LoginPage, LoginService],
   declarations: [RegisterPage]
 })
-export class RegisterPageModule {}
+export class RegisterPageModule {
+}

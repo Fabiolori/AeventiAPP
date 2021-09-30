@@ -10,7 +10,7 @@ const routes: Routes = [
   },
   {
     path: 'success',
-    loadChildren: () => import('src/app/pages/success/success.module').then( m => m.SuccessPageModule)
+    loadChildren: () => import('src/app/pages/success/success.module').then(m => m.SuccessPageModule)
   }
 ];
 
@@ -18,4 +18,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class LoginPageRoutingModule {}
+export class LoginPageRoutingModule {
+}

@@ -5,27 +5,27 @@ const routes: Routes = [
 
   {
     path: 'feed',
-    loadChildren: () => import('./pages/feed/feed.module').then( m => m.FeedPageModule)
+    loadChildren: () => import('./pages/feed/feed.module').then(m => m.FeedPageModule)
   },
   {
     path: 'settings',
-    loadChildren: () => import('./pages/settings/settings.module').then( m => m.SettingsPageModule)
+    loadChildren: () => import('./pages/settings/settings.module').then(m => m.SettingsPageModule)
   },
   {
     path: 'notifications',
-    loadChildren: () => import('./pages/notifications/notifications.module').then( m => m.NotificationsPageModule)
+    loadChildren: () => import('./pages/notifications/notifications.module').then(m => m.NotificationsPageModule)
   },
   {
     path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule)
   },
   {
     path: 'register',
-    loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
+    loadChildren: () => import('./pages/register/register.module').then(m => m.RegisterPageModule)
   },
   {
     path: 'success',
-    loadChildren: () => import('./pages/success/success.module').then( m => m.SuccessPageModule)
+    loadChildren: () => import('./pages/success/success.module').then(m => m.SuccessPageModule)
   },
   {
     path: 'new-event',
@@ -38,10 +38,12 @@ const routes: Routes = [
 
 
 ];
+
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes, {preloadingStrategy: PreloadAllModules})
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}

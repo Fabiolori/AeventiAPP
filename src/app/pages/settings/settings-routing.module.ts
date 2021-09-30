@@ -11,16 +11,17 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () =>
-    import('src/app/pages/login/login.module').then(m => m.LoginPageModule)
-    },
-    {
-      path: 'register',
-      loadChildren: () => import('src/app/pages/register/register.module').then( m => m.RegisterPageModule)
-    },
+      import('src/app/pages/login/login.module').then(m => m.LoginPageModule)
+  },
+  {
+    path: 'register',
+    loadChildren: () => import('src/app/pages/register/register.module').then(m => m.RegisterPageModule)
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class SettingsPageRoutingModule {}
+export class SettingsPageRoutingModule {
+}

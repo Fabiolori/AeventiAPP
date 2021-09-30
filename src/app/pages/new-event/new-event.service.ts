@@ -15,8 +15,8 @@ export class NewEventService {
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json;charset=UTF-8')
       .set('Authorization', this.tokenStorage.getToken());
-    const options = { headers };
-    const response = this.http.post<Event>(api + 'events',event, options);
+    const options = {headers};
+    const response = this.http.post<Event>(api + 'events', event, options);
     console.log(event);
     return response;
   }
@@ -26,7 +26,6 @@ export class NewEventService {
     console.error(error.error);
     console.error(error.headers);
   }
-
 
 
 }

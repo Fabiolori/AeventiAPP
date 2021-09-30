@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import {api} from "../../../environments/environment";
 import {TokenManagerService} from "../../TokenManagerService";
@@ -17,7 +16,7 @@ export class LoginService {
   login(username: string, password: string): Observable<any> {
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json;charset=UTF-8');
-    const options = { headers : headers };
+    const options = {headers: headers};
     return this.http.post(api + 'public/login', {
       username,
       password
@@ -35,7 +34,7 @@ export class LoginService {
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json;charset=UTF-8')
       .set('Authorization', this.tokenStorage.getToken());
-    const options = { headers };
+    const options = {headers};
     return this.http.get(api + 'refresh-token', options);
   }
 }

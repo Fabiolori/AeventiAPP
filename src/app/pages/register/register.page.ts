@@ -29,15 +29,14 @@ export class RegisterPage implements OnInit {
 
   register() {
 
- this.registerService.addAccount(this.registerForm).subscribe(() =>{
-   alert('Benvenuto ' + this.registerForm.value.name + '!');
-     this.router.navigate(['/login']);
- }
-   , error => {
-     console.log(error);}
- );
-
-
+    this.registerService.addAccount(this.registerForm).subscribe(() => {
+        alert('Benvenuto ' + this.registerForm.value.name + '!');
+        this.router.navigate(['/login']);
+      }
+      , error => {
+        console.log(error);
+      }
+    );
 
 
   }

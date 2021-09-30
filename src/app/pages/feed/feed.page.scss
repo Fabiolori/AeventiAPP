@@ -1,4 +1,4 @@
-.card{
+.card {
   text-align: center;
   position: absolute;
   width: 100%;
@@ -7,17 +7,20 @@
   top: 0;
   background-color: #9b4a4a;
   padding: 0 8px;
-  box-sizing: border-box; }
-.foto-evento{
+  box-sizing: border-box;
+}
+
+.foto-evento {
   position: absolute;
   width: 100%;
   height: 100%;
   left: 0;
   top: 0;
   padding: 0 8px;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+}
 
-.reload{
+.reload {
   --background: red;
 }
 

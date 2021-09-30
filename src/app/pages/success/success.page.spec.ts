@@ -9,7 +9,7 @@ describe('SuccessPage', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ SuccessPage ],
+      declarations: [SuccessPage],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 

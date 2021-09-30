@@ -1,13 +1,10 @@
 package com.unicam.it.AEventi.Services;
 
 import com.unicam.it.AEventi.Models.Event;
-import com.unicam.it.AEventi.Models.EventType;
 import com.unicam.it.AEventi.Repo.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
-import java.util.Calendar;
 import java.util.List;
 
 @Service

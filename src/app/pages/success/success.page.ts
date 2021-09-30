@@ -8,10 +8,11 @@ import 'gl-ionic-background-video';
 
 })
 export class SuccessPage implements OnInit {
-    slideOpts = {
+  slideOpts = {
     initialSlide: 0,
     speed: 400,
   }
+
   constructor() {
 
   }
@@ -19,7 +20,7 @@ export class SuccessPage implements OnInit {
   ngOnInit() {
 
   }
- }
+}
 
 
 

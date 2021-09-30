@@ -21,4 +21,5 @@ import {HttpClientModule} from '@angular/common/http';
   providers: [LoginService],
   declarations: [LoginPage]
 })
-export class LoginPageModule {}
+export class LoginPageModule {
+}

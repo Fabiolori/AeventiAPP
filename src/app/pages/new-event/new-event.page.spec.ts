@@ -9,7 +9,7 @@ describe('NewEventPage', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ NewEventPage ],
+      declarations: [NewEventPage],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 

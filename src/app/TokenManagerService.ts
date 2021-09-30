@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
-import { Cookie } from 'ng2-cookies/ng2-cookies';
+import {Cookie} from 'ng2-cookies/ng2-cookies';
 //VERRANNO SOVRASCRITTI AL LOGIN
 const TOKEN_KEY = 'auth-token';
 const REFRESHTOKEN_KEY = 'auth-refreshtoken';
 const USER_KEY = 'auth-user';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -38,6 +39,7 @@ export class TokenManagerService {
   public getRefreshToken(): string | null {
     return Cookie.get('id_token');
   }
+
   public saveUser(user: any): void {
     sessionStorage.removeItem(USER_KEY);
     sessionStorage.setItem(USER_KEY, JSON.stringify(user));
@@ -51,8 +53,9 @@ export class TokenManagerService {
 
     return {};
   }
+
   public isLogged(): string {
-   return Cookie.get('logged');
+    return Cookie.get('logged');
 
   }
 }

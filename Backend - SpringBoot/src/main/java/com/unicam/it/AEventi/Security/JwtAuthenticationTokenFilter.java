@@ -43,7 +43,6 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     //Prendo il token da chi fa la richiesta e vedo se è vuoto
     String authToken = request.getHeader(this.tokenHeader);
     final String header = request.getHeader(HttpHeaders.AUTHORIZATION);
-    // TODO VEDI BEARER
     if (header == null || !header.startsWith("Bearer ")) {
       chain.doFilter(request, response);
       return;

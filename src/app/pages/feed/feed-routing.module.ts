@@ -10,9 +10,12 @@ const routes: Routes = [
   },
   {
     path: 'new-event',
-    loadChildren: () => import('src/app/pages/new-event/new-event.module').then( m => m.NewEventPageModule)
-  }
-
+    loadChildren: () => import('src/app/pages/new-event/new-event.module').then(m => m.NewEventPageModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('src/app/pages/login/login.module').then(m => m.LoginPageModule)
+  },
 
 ];
 
@@ -20,4 +23,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class FeedPageRoutingModule {}
+export class FeedPageRoutingModule {
+}
